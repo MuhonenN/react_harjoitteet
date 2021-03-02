@@ -1,3 +1,4 @@
+const config = require('./config')
 const { ApolloServer, gql, UserInputError } = require('apollo-server')
 const jwt = require('jsonwebtoken')
 
@@ -5,13 +6,11 @@ const mongoose = require('mongoose')
 const Person = require('./models/person')
 const User = require('./models/user')
 
-const MONGODB_URI = 'mongodb+srv://fullstack:8cJyRLH0sTo6iS0t@cluster0.sxgei.mongodb.net/phonebook-app?retryWrites=true&w=majority'
-
 const JWT_SECRET = 'NEED_HERE_A_SECRET_KEY'
 
 console.log('connecting to', MONGODB_URI)
 
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
+mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
     .then(() => {
         console.log('connected to MongoDB')
     })
